@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="index.js"></script> -->
+    <title>Document</title>
+  </head>
+  <style>
+    /* Style the t-shirt container to position the images */
+    #t-shirt-container {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
+    }
+
+    /* Style the t-shirt image to fill the container */
+    #t-shirt-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* Style the user image to fit within the t-shirt */
+    #user-image {
+      position: absolute;
+      top: 176px;
+      left: 200px;
+      width: 100px;
+      height: 100px;
+      z-index: 2;
+    }
+  </style>
+  <body>
+    <!-- The input element for uploading the user's image -->
+    <input type="file" id="image-upload" />
+
+    <!-- The container element for the t-shirt mockup -->
+    <div id="t-shirt-container">
+      <img
+        src="https://freepngimg.com/download/tshirt/36634-6-blank-white-t-shirt-template.png"
+        id="t-shirt-image"
+      />
+      <img src="" id="user-image" />
+    </div>
+  </body>
+  <script>
+    // Get the image upload input element
+    const imageUpload = document.getElementById("image-upload");
+
+    // Get the t-shirt image and user image elements
+    const tShirtImage = document.getElementById("t-shirt-image");
+    const userImage = document.getElementById("user-image");
+
+    // Listen for changes to the image upload input
+    imageUpload.addEventListener("change", function () {
+      // Get the selected file
+      const file = this.files[0];
+
+      // Create a new FileReader object
+      const reader = new FileReader();
+
+      // Listen for when the file is loaded
+      reader.addEventListener("load", function () {
+        // Set the user image element's source to the loaded file
+        userImage.src = reader.result;
+      });
+
+      // Read the selected file as a data URL
+      reader.readAsDataURL(file);
+    });
+  </script>
+</html>
